@@ -1,6 +1,7 @@
 ﻿using System;
 using xadrex_console.tabuleiro;
 using xadrex;
+using xadrex_console.xadrex;
 
 namespace xadrex_console
 {
@@ -15,13 +16,17 @@ namespace xadrex_console
             */
             try
             {
+                /*
                 Tabuleiro tab = new Tabuleiro(8, 8);
                 tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
                 tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
                 tab.ColocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 9));
-
-
                 Tela.imprimirTabuleiro(tab);
+                */
+                PosicaoXadrex pos = new PosicaoXadrex('c', 7);
+                Console.WriteLine(pos);
+                Console.WriteLine(pos.toPosicao());
+
             }
             catch (TabuleiroException e)
             {
