@@ -17,6 +17,10 @@ namespace xadrex_console.tabuleiro
             this.cor = cor;
             this.qtdmoves = 0;
         }
+        public void AddQtdMovimentos()
+        {
+            qtdmoves++;
+        }
 
     }
 }

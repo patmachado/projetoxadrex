@@ -16,7 +16,7 @@ namespace xadrex_console
             */
             try
             {
-                
+                /*
                 Tabuleiro tab = new Tabuleiro(8, 8);
                 tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
                 tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
@@ -24,11 +24,29 @@ namespace xadrex_console
 
                 tab.ColocarPeca(new Torre(tab, Cor.Branca), new Posicao(3, 5));
                 Tela.imprimirTabuleiro(tab);
-                /*
+                
                 PosicaoXadrex pos = new PosicaoXadrex('c', 7);
                 Console.WriteLine(pos);
                 Console.WriteLine(pos.toPosicao());
                 */
+
+                PartidaXadrex partida = new PartidaXadrex();
+
+                while (!partida.encerrada)
+                {
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partida.tab);
+                    Console.WriteLine();
+                    Console.Write("Origem: ");
+                    Posicao origem = Tela.LerPosicaoXadrex().toPosicao();
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.LerPosicaoXadrex().toPosicao();
+
+                    partida.executaMovimento(origem, destino);
+                }
+                Tela.imprimirTabuleiro(partida.tab);
+
+
 
             }
             catch (TabuleiroException e)

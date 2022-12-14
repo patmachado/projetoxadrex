@@ -2,32 +2,33 @@
 using System.Collections.Generic;
 using System.Text;
 using xadrex_console.tabuleiro;
+using xadrex_console.xadrex;
 
 namespace xadrex_console
 {
-     class Tela
+    class Tela
     {
         public static void imprimirTabuleiro(Tabuleiro tab)
         {
-            for(int i = 0; i< tab.linhas; i++)
+            for (int i = 0; i < tab.linhas; i++)
             {
                 Console.Write(8 - i + " ");
-                for(int j = 0; j < tab.colunas; j++)
+                for (int j = 0; j < tab.colunas; j++)
                 {
-                    if (tab.peca(i,j) == null)
+                    if (tab.peca(i, j) == null)
                     {
                         Console.Write("- ");
                     }
                     else
                     {
-                        ImprimirPeca(tab.peca(i,j));
+                        ImprimirPeca(tab.peca(i, j));
                         Console.Write(" ");
 
                         //Console.Write(tab.peca(i, j) + " ");
                     }
                 }
                 Console.WriteLine();
-                
+
             }
             Console.WriteLine("  a b c d e f g h");
 
@@ -46,6 +47,14 @@ namespace xadrex_console
                 Console.Write(peca);
                 Console.ForegroundColor = aux;
             }
+        }
+
+        public static PosicaoXadrex LerPosicaoXadrex()
+        {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1] + "");
+            return new PosicaoXadrex(coluna, linha);
         }
     }
 }
