@@ -4,7 +4,7 @@ using System.Text;
 
 namespace xadrex_console.tabuleiro
 {
-    class Peca
+    abstract class Peca
     {
         public Posicao posicao { get; set; }
         public Cor cor { get; protected set; }
@@ -21,6 +21,8 @@ namespace xadrex_console.tabuleiro
         {
             qtdmoves++;
         }
+
+        public abstract bool[,] movimentosPossiveis();
 
     }
 }
