@@ -9,8 +9,8 @@ namespace xadrex
     class PartidaXadrex
     {
         public Tabuleiro tab { get; private set; }
-        private int turno;
-        private Cor jogadorAtual;
+        public int turno { get; private set; }
+        public Cor jogadorAtual { get; private set; }
         public bool encerrada { get; private set; }
 
         public PartidaXadrex()
@@ -28,6 +28,49 @@ namespace xadrex
             p.AddQtdMovimentos();
             Peca pecaAtiva = tab.RetirarPeca(destino);
             tab.ColocarPeca(p, destino);
+        }
+
+        public void realizaJogada(Posicao origem, Posicao destino)
+        {
+            executaMovimento(origem, destino);
+            turno++;
+            mudaJogador();
+        }
+
+        public void validaPosOrigem(Posicao pos)
+        {
+            if(tab.peca(pos) == null)
+            {
+                throw new TabuleiroException("Não existe peça na posição escolhida.");
+            }
+            if(jogadorAtual != tab.peca(pos).cor)
+            {
+                throw new TabuleiroException("A peça não é sua.");
+            }
+            if (!tab.peca(pos).getMovimentosPossiveis())
+            {
+                throw new TabuleiroException("Não existe movimentos possiveis.");
+            }
+        }
+
+        public void validaPosDestino(Posicao origem, Posicao destino)
+        {
+            if (!tab.peca(origem).getPodeMover(destino))
+            {
+                throw new TabuleiroException("Posicao destino invalida.");
+            }
+        }
+        private void mudaJogador()
+        {
+            if(jogadorAtual == Cor.Branca)
+            {
+                jogadorAtual = Cor.Preta;
+
+            }
+            else
+            {
+                jogadorAtual = Cor.Branca;
+            }
         }
 
         private void colocarPecas()
