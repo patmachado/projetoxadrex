@@ -21,6 +21,12 @@ namespace xadrex_console.tabuleiro
         {
             qtdmoves++;
         }
+        public void SubtractQtdMovimentos()
+        {
+            qtdmoves--;
+        }
+
+        
         public bool getMovimentosPossiveis()
         {
             bool[,] mat = movimentosPossiveis();
