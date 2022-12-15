@@ -18,10 +18,19 @@ namespace xadrex_console
 
             Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
-            Console.WriteLine("Aguardando Jogada: " + partida.jogadorAtual);
-            if (partida.xeque)
+            
+            if (!partida.encerrada)
             {
-                Console.WriteLine("!!! Xeque !!!");
+                Console.WriteLine("Aguardando " + partida.jogadorAtual);
+                if (partida.xeque)
+                {
+                    Console.WriteLine("! Xeque !");
+                }
+            }
+            else
+            {
+                Console.WriteLine("!!! Xeque Mate !!!");
+                Console.WriteLine("Vencedor: " + partida.jogadorAtual);
             }
         }
 

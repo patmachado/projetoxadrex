@@ -70,10 +70,16 @@ namespace xadrex
             {
                 xeque = false;
             }
+            if (getXequeMate(adversaria(jogadorAtual)))
+            {
+                encerrada = true;
+            }
+            else
+            {
 
-
-            turno++;
-            mudaJogador();
+                turno++;
+                mudaJogador();
+            }
         }
 
         public void validaPosOrigem(Posicao pos)
@@ -189,6 +195,39 @@ namespace xadrex
 
             }
             return false;
+        }
+
+        public bool getXequeMate(Cor cor)
+        {
+            if (!getXeque(cor))
+            {
+                return false;
+            }
+            foreach(Peca x in pecasEmJogo(cor))
+            {
+                bool[,] mat = (x.movimentosPossiveis());
+                for(int i = 0; i < tab.linhas; i++)
+                {
+                    for (int j = 0; j < tab.colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = x.posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = executaMovimento(origem, destino);
+                            bool testeXeque = getXeque(cor);
+                            desfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false;
+                            }
+                        }
+
+                    }
+                }
+            }
+            return true;
+
         }
 
         private void colocarPecas()
